@@ -5,7 +5,7 @@ import styles from '../styles';
 
 import Dropdown from '../components/Dropdown';
 
-export default function form() {
+export default function form({navigation}) {
     const [subject, setSubject] = React.useState(undefined);
     const [rating, setRating] = React.useState(undefined);
     const [positive, setPositive] = React.useState('');
@@ -37,60 +37,45 @@ export default function form() {
           'accept': 'application/json'
         },
         body: JSON.stringify({
-          subject: subject,
-          rating: rating,
+          subject: subject.name,
+          rating: rating.name,
           negativeMessage: negative,
           positiveMessage: positive
         })
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:');
-        
-        console.table(data);
+      .then(() => {
+        console.table([subject, rating, negative, positive])
       })
       .catch(error => {
         console.log(error);
       })
-
-    /* axios.post('http://localhost:3001/ratings', {
-        headers: {
-            'Content-Type': 'application/json',
-            'accept': 'application/json'
-        },
-        subject: subject,
-        rating: rating,
-        negativeMessage: negative,
-        positiveMessage: positive
-    })
-    .then(response => JSON.parse(JSON.stringify(response)))
-    .then(data => {
-        console.log('Success:');
-        
-        console.table(data);
-    })
-    .catch(error => console.error(error)) */
-
     }
     
     return (
         <View>
-        {!!subject && (
+            <Text style={styles.title}>Avaliação de disciplinas</Text>
+
+        <br />
+        <br />
+        <Text style={styles.listTitle}>Disciplina</Text>    
+          {!!subject && (
         <Text>
-          Selected: label = {subject.name} and value = {subject.id}
+          Disciplina: {subject.name}
         </Text>
         )}
         <Dropdown style={{ color: '#000' }} label="Select Item" data={subjectData} onSelect={setSubject} />
+            <br />
 
+        <Text style={[styles.listTitle, { alignItems: 'flex-start' }]}>Nota</Text>
         {!!rating && (
         <Text>
-          Selected: label = {rating.name} and value = {rating.id}
+          Avaliação: {rating.name}
         </Text>
         )}
         <Dropdown label="Select Item" data={ratingData} onSelect={setRating} />
-            
-          <Text style={styles.title}>Avaliação de disciplinas</Text>
-              <View style={ styles.lilMargin }>
+                   
+
+        <View style={ styles.lilMargin }>
             <Text> Positive review:  </Text>          
             <TextInput              
               style={ styles.textInputs }
@@ -100,7 +85,7 @@ export default function form() {
               
               onChangeText = {(input: React.SetStateAction<string>) => setPositive(input)}
               />            
-          </View>           
+          </View>    
 
           <View style={ styles.lilMargin }>
             <Text> Negative review:  </Text>          
@@ -118,7 +103,16 @@ export default function form() {
               style={ styles.button }
               onPress={() => handleSubmit()}
               >
-                <Text>Login</Text>
+                <Text>Enviar avaliação</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={ styles.lilMargin }>
+            <TouchableOpacity
+              style={ styles.button }
+              onPress={() => navigation.navigate('Restricted')}
+              >
+                <Text>Área restrita</Text>
             </TouchableOpacity>
           </View>
       </View>
