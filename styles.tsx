@@ -75,6 +75,24 @@ const styles = StyleSheet.create({
       height: 100,
       width: 350,
       color: '#000',
+    },
+
+    headerText: {
+      fontSize: 16,
+      textAlign: 'center',
+      margin: 10,
+      fontWeight: 'bold',
+    },
+
+    headStyle: {
+      height: 50,
+      backgroundColor: '#f1f8ff',
+      alignContent: 'center',
+    },
+
+    rowText: {
+      textAlign: 'center',
+      margin: 10,
     }
 });
 

@@ -3,13 +3,14 @@ import { Button, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 're
 import { DataTable } from 'react-native-paper';
 import styles from '../styles';
 
-import { Table, TableWrapper, Cell, Row, Rows, Col, Cols } from 'react-native-table-component';
+import { Table, TableWrapper, Row, Rows, Col, Cols } from 'react-native-table-component';
 
-const MyComponent = () => {
+const RestrictedArea = () => {
   const DATA = Array()
+  const HEADERS = ['Disciplina', 'Nota', 'Positivo', 'Negativo']
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState(false)
-  const headers = ['Disciplina', 'Nota', 'Positivo', 'Negativo']
+  const widthArray = [40, 60, 80, 100, 120, 140, 160, 180, 200]
 
   const handleDelete = async () => {
     await fetch('http://localhost:3001/ratings', {
@@ -51,35 +52,27 @@ const MyComponent = () => {
 
   return (
     <SafeAreaView style={ styles.body }>
-      {/* <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-        <Row data={[
-          <Text style={styles.listTitle}>Disciplina</Text>,
-          <Text style={styles.listTitle}>Nota</Text>,
-          <Text style={styles.listTitle}>Positivo</Text>,
-          <Text style={styles.listTitle}>Negativo</Text>
-        ]}/>
-        <Rows data={DATA}/>
-      </Table> */}
-
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => {          
-          return (
-            <View style={styles.listItem}>
-              <Text style={styles.listItemText}>{item}</Text>
-            </View>
-          )
-        }}
-        keyExtractor={item => item[0]}
-      />
-
-      {DATA.length}
-
-      <TouchableOpacity style={[ styles.button, { backgroundColor: '#d92b2b' } ]} onPress={handleDelete}>
-        <Text>Deletar</Text>
-      </TouchableOpacity>
+      <TableWrapper>
+      <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+        <Row 
+        data={HEADERS}
+        style={styles.headStyle}
+        textStyle={styles.headerText}/>
+        <Rows data={[
+          ['1', 'Matemática', '10', 'Muito bom', 'Nada a declarar'],
+          ['2', 'Português', '10', 'Muito bom', 'Nada a declarar'],
+        ]} 
+        textStyle={styles.rowText}/>
+      </Table>
+      </TableWrapper>
+      <View style={styles.lilMargin}>
+        <Button
+          title="Deletar"
+          onPress={handleDelete}
+        />
+      </View>
     </SafeAreaView>
   );
 }
 
-export default MyComponent;
+export default RestrictedArea;
