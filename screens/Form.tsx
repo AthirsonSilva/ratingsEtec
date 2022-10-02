@@ -6,11 +6,12 @@ import { Picker } from '@react-native-picker/picker';
 import Dropdown from '../components/Dropdown';
 import ModalDropdown from 'react-native-modal-dropdown';
 
+
 export default function form({navigation}: any) {
-    const [subject, setSubject] = React.useState(undefined);
-    const [rating, setRating] = React.useState(undefined);
-    const [positive, setPositive] = React.useState('');
-    const [negative, setNegative] = React.useState('');
+  const [subject, setSubject] = React.useState(undefined);
+  const [rating, setRating] = React.useState(undefined);
+  const [positive, setPositive] = React.useState('');
+  const [negative, setNegative] = React.useState('');
 
     const pickerRef = React.useRef(undefined)
 
@@ -66,37 +67,21 @@ export default function form({navigation}: any) {
         <SafeAreaView style={ styles.body }>
         <br />
         <br />
-        {/* <Text style={styles.listTitle}>Disciplina</Text>    
-          {!!subject && (
-        <Text>
-          Disciplina: {subject.name}
-        </Text>
-        )}
-        <Dropdown style={{ color: '#000' }} label="Select Item" data={subjectData} onSelect={setSubject} />
-            <br />
-
-        <Text style={[styles.listTitle, { alignItems: 'flex-start' }]}>Nota</Text>
-        {!!rating && (
-        <Text>
-          Avaliação: {rating.name}
-        </Text>
-        )}
-        <Dropdown label="Select Item" data={ratingData} onSelect={setRating} />
-                  */}
-
+        
       <Text style={styles.listTitle}>Disciplina</Text>
         <View style={[ styles.lilMargin, { 
           marginHorizontal: '10vw', 
           height: '5vh', 
           } ]}>
         <Picker
+          mode={'dropdown'}
           style={[ styles.picker, { borderRadius: 10 } ]}
           ref={pickerRef}
-          selectedValue={rating}
+          selectedValue={subject}
           onValueChange={(value, index) => {
-            setRating(value)
+            (() => setSubject(value))()
 
-            console.log(rating)
+            console.log(subject)
             }
           }>
           <Picker.Item label="PW3" value="PW3" />
@@ -108,9 +93,32 @@ export default function form({navigation}: any) {
           <Picker.Item label="BD2" value="BD2" />
         </Picker>
         </View>
+        <br />
+      <Text style={styles.listTitle}>Avaliação</Text>
+        <View style={[ styles.lilMargin, { 
+          marginHorizontal: '10vw', 
+          height: '5vh', 
+          } ]}>
+        <Picker
+          mode={'dropdown'}
+          style={[ styles.picker, { borderRadius: 10 } ]}
+          ref={pickerRef}
+          selectedValue={rating}
+          onValueChange={(value, index) => {
+            (() => setRating(value))()
+
+            console.log(rating)
+            }
+          }>
+          <Picker.Item label="I" value="I" />
+          <Picker.Item label="R" value="R" />
+          <Picker.Item label="B" value="B" />
+          <Picker.Item label="MB" value="MB" />
+        </Picker>
+        </View>
 
         <View style={ styles.lilMargin }>
-            <Text> Positive review:  </Text>          
+            <Text style={[ styles.listTitle, { marginBottom: '2vh' } ]}> Positive review:  </Text>          
             <TextInput              
               style={ styles.textInputs }
               placeholder='Enter your positive review. Example: foo'
@@ -122,7 +130,7 @@ export default function form({navigation}: any) {
           </View>    
 
           <View style={ styles.lilMargin }>
-            <Text> Negative review:  </Text>          
+            <Text style={[ styles.listTitle, { marginBottom: '2vh' } ]}> Negative review:  </Text>          
             <TextInput
               style={styles.textInputs}
               placeholder='Enter your negative review. Example: bar'
