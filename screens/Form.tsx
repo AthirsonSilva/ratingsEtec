@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from '../styles';
 
@@ -6,7 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 import Dropdown from '../components/Dropdown';
 
 
-export default function form({navigation}: any) {
+export default function Form({navigation}: any) {
   const [subject, setSubject] = React.useState<string>('');
   const [rating, setRating] = React.useState<string>('');
   const [positive, setPositive] = React.useState<string>('');

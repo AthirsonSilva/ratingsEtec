@@ -1,51 +1,83 @@
 import * as React from 'react';
-import { SafeAreaView } from 'react-native';
+import { Button, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import styles from '../styles';
 
-const optionsPerPage = [4, 6, 8];
+import { Table, TableWrapper, Cell, Row, Rows, Col, Cols } from 'react-native-table-component';
 
 const MyComponent = () => {
-  const [page, setPage] = React.useState<number>(0);
-  const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
+  const DATA = Array()
+  const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState(false)
+  const headers = ['Disciplina', 'Nota', 'Positivo', 'Negativo']
+
+  const handleDelete = async () => {
+    await fetch('http://localhost:3001/ratings', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+    })
+    .then(response => response.json())
+    .then(data => console.table(data))
+    .catch(error => console.error(error))
+  }
 
   React.useEffect(() => {
-    setPage(0);
-  }, [itemsPerPage]);
+    fetch('http://localhost:3001/ratings', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+    })
+    .then(response => response.json())
+    .then(response => {
+      response.ratings.map((item: any) => {
+        DATA.push([item.id, item.subject, item.rating, item.positiveMessage, item.negativeMessage])
+      })
+
+      console.table(DATA)
+
+      DATA.forEach((item: any) => {
+        console.log(item[1])
+      })
+    })
+    .catch(error => console.error(error))
+  })
+
+  console.table('TABLE: ', DATA)
 
   return (
     <SafeAreaView style={ styles.body }>
-      <DataTable>
-        <DataTable.Header>
-          <DataTable.Title>Dessert</DataTable.Title>
-          <DataTable.Title numeric>Calories</DataTable.Title>
-          <DataTable.Title numeric>Fat</DataTable.Title>
-        </DataTable.Header>
+      {/* <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+        <Row data={[
+          <Text style={styles.listTitle}>Disciplina</Text>,
+          <Text style={styles.listTitle}>Nota</Text>,
+          <Text style={styles.listTitle}>Positivo</Text>,
+          <Text style={styles.listTitle}>Negativo</Text>
+        ]}/>
+        <Rows data={DATA}/>
+      </Table> */}
 
-        <DataTable.Row>
-          <DataTable.Cell>Frozen yogurt</DataTable.Cell>
-          <DataTable.Cell numeric>159</DataTable.Cell>
-          <DataTable.Cell numeric>6.0</DataTable.Cell>
-        </DataTable.Row>
+      <FlatList
+        data={DATA}
+        renderItem={({ item }) => {          
+          return (
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>{item}</Text>
+            </View>
+          )
+        }}
+        keyExtractor={item => item[0]}
+      />
 
-        <DataTable.Row>
-          <DataTable.Cell>Ice cream sandwich</DataTable.Cell>
-          <DataTable.Cell numeric>237</DataTable.Cell>
-          <DataTable.Cell numeric>8.0</DataTable.Cell>
-        </DataTable.Row>
+      {DATA.length}
 
-        <DataTable.Pagination
-          page={page}
-          numberOfPages={3}
-          onPageChange={(page) => setPage(page)}
-          label="1-2 of 6"
-          optionsPerPage={optionsPerPage}
-          itemsPerPage={itemsPerPage}
-          setItemsPerPage={setItemsPerPage}
-          showFastPagination
-          optionsLabel={'Rows per page'}
-          />
-      </DataTable>
+      <TouchableOpacity style={[ styles.button, { backgroundColor: '#d92b2b' } ]} onPress={handleDelete}>
+        <Text>Deletar</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
