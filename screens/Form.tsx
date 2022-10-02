@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from '../styles';
 
 import { Picker } from '@react-native-picker/picker';
 import Dropdown from '../components/Dropdown';
-import ModalDropdown from 'react-native-modal-dropdown';
 
 
 export default function form({navigation}: any) {
-  const [subject, setSubject] = React.useState(undefined);
-  const [rating, setRating] = React.useState(undefined);
-  const [positive, setPositive] = React.useState('');
-  const [negative, setNegative] = React.useState('');
+  const [subject, setSubject] = React.useState<string>('');
+  const [rating, setRating] = React.useState<string>('');
+  const [positive, setPositive] = React.useState<string>('');
+  const [negative, setNegative] = React.useState<string>('');
 
-    const pickerRef = React.useRef(undefined)
+    const pickerRef = React.useRef<any>()
 
     const open = () => {
       pickerRef.current.open()
@@ -23,24 +22,6 @@ export default function form({navigation}: any) {
       pickerRef.current.close()
     }
 
-    const subjectData = [
-      { id: 1, name: 'Programaçaõ de apps mobile II' },
-      { id: 2, name: 'Programação Web III' },
-      { id: 3, name: 'Sistemas Embarcados' },
-      { id: 4, name: 'Segurança de sistemas da informação' },
-      { id: 5, name: 'Desenvolvimento do trabalho de conclusão de curso' },
-      { id: 6, name: 'Qualidade e Teste de Software' },
-      { id: 7, name: 'Banco de dados III' },
-    ]
-    
-    const ratingData = [
-      { id: 1, name: 1 },
-      { id: 2, name: 2 },
-      { id: 3, name: 3 },
-      { id: 4, name: 4 },
-      { id: 5, name: 5 },
-    ]
-
     const handleSubmit = (): void => {
       fetch('http://localhost:3001/ratings', {
         method: 'POST',
@@ -49,8 +30,8 @@ export default function form({navigation}: any) {
           'accept': 'application/json'
         },
         body: JSON.stringify({
-          subject: subject.name,
-          rating: rating.name,
+          subject: subject.value,
+          rating: rating.value,
           negativeMessage: negative,
           positiveMessage: positive
         })

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import styles from '../styles';
 
-const optionsPerPage = [2, 3, 4];
+const optionsPerPage = [4, 6, 8];
 
 const MyComponent = () => {
   const [page, setPage] = React.useState<number>(0);
