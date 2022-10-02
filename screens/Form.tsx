@@ -1,15 +1,26 @@
 import React from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import axios from 'axios';
+import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from '../styles';
 
+import { Picker } from '@react-native-picker/picker';
 import Dropdown from '../components/Dropdown';
+import ModalDropdown from 'react-native-modal-dropdown';
 
-export default function form({navigation}) {
+export default function form({navigation}: any) {
     const [subject, setSubject] = React.useState(undefined);
     const [rating, setRating] = React.useState(undefined);
     const [positive, setPositive] = React.useState('');
     const [negative, setNegative] = React.useState('');
+
+    const pickerRef = React.useRef(undefined)
+
+    const open = () => {
+      pickerRef.current.open()
+    }
+
+    const close = () => {
+      pickerRef.current.close()
+    }
 
     const subjectData = [
       { id: 1, name: 'Programaçaõ de apps mobile II' },
@@ -52,12 +63,10 @@ export default function form({navigation}) {
     }
     
     return (
-        <View>
-            <Text style={styles.title}>Avaliação de disciplinas</Text>
-
+        <SafeAreaView style={ styles.body }>
         <br />
         <br />
-        <Text style={styles.listTitle}>Disciplina</Text>    
+        {/* <Text style={styles.listTitle}>Disciplina</Text>    
           {!!subject && (
         <Text>
           Disciplina: {subject.name}
@@ -73,7 +82,32 @@ export default function form({navigation}) {
         </Text>
         )}
         <Dropdown label="Select Item" data={ratingData} onSelect={setRating} />
-                   
+                  */}
+
+      <Text style={styles.listTitle}>Disciplina</Text>
+        <View style={[ styles.lilMargin, { 
+          marginHorizontal: '10vw', 
+          height: '5vh', 
+          } ]}>
+        <Picker
+          style={[ styles.picker, { borderRadius: 10 } ]}
+          ref={pickerRef}
+          selectedValue={rating}
+          onValueChange={(value, index) => {
+            setRating(value)
+
+            console.log(rating)
+            }
+          }>
+          <Picker.Item label="PW3" value="PW3" />
+          <Picker.Item label="PAM2" value="PAM2" />
+          <Picker.Item label="SE" value="SE" />
+          <Picker.Item label="SSI" value="SSI" />
+          <Picker.Item label="DTCC" value="DTCC" />
+          <Picker.Item label="QTS" value="QTS" />
+          <Picker.Item label="BD2" value="BD2" />
+        </Picker>
+        </View>
 
         <View style={ styles.lilMargin }>
             <Text> Positive review:  </Text>          
@@ -115,7 +149,7 @@ export default function form({navigation}) {
                 <Text>Área restrita</Text>
             </TouchableOpacity>
           </View>
-      </View>
+      </SafeAreaView>
     );
 }
 

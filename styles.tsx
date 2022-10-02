@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     body: {
         flex: 1,
+        backgroundColor: '#fff',
     },
     
     container:{
@@ -65,6 +66,15 @@ const styles = StyleSheet.create({
     bgimage: {
       height: '100%',
       width: '100%'
+    },
+
+    picker: {
+      flex: 1,
+      alignItems: 'center',
+      // justifyContent: 'center',
+      height: 100,
+      width: 350,
+      color: '#000',
     }
 });
 

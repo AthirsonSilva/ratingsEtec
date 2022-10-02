@@ -18,8 +18,34 @@ export default class App extends React.Component {
         <SafeAreaView style={styles.container}>
               <NavigationContainer>
                 <Stack.Navigator initialRouteName="Form">
-                  <Stack.Screen name="Form" component={Form} />        
-                  <Stack.Screen name="Restricted" component={Restricted} />    
+                  <Stack.Screen 
+                    name="Form" 
+                    component={Form} 
+                    options={{
+                    title: 'Avaliação de disciplinas',
+                    headerStyle: {
+                      backgroundColor: '#fff',
+                    },
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      fontSize: 26,
+                    },
+                    headerTitleAlign: 'center',
+                  }} />        
+                  <Stack.Screen 
+                  name="Restricted" 
+                  component={Restricted} 
+                  options={{
+                    title: 'Área restrita',
+                    headerStyle: {
+                      backgroundColor: '#fff',
+                    },
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      fontSize: 26,
+                    },
+                    headerTitleAlign: 'center',
+                  }}/>    
                 </Stack.Navigator>
               </NavigationContainer>
         </SafeAreaView>
