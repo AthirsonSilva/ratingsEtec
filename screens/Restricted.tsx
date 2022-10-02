@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Button, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { DataTable } from 'react-native-paper';
+import { LogBox, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import styles from '../styles';
 
-import { Table, TableWrapper, Row, Rows, Col, Cols } from 'react-native-table-component';
+import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
+
+LogBox.ignoreLogs(['Failed prop type: Invalid prop `textStyle` of type `array` supplied to `Cell`, expected `object`.']);
 
 const RestrictedArea = () => {
   const DATA = Array()
-  const HEADERS = ['Disciplina', 'Nota', 'Positivo', 'Negativo']
+  const HEADERS = ['Índice', 'Disciplina', 'Nota', 'Positivo', 'Negativo']
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState(false)
   const widthArray = [40, 60, 80, 100, 120, 140, 160, 180, 200]
@@ -41,9 +42,7 @@ const RestrictedArea = () => {
 
       console.table(DATA)
 
-      DATA.forEach((item: any) => {
-        console.log(item[1])
-      })
+      console.table(DATA[0][0])
     })
     .catch(error => console.error(error))
   })
@@ -56,9 +55,11 @@ const RestrictedArea = () => {
       <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
         <Row 
         data={HEADERS}
-        style={styles.headStyle}
+        style={styles.cellStyle}
         textStyle={styles.headerText}/>
-        <Rows data={[
+        <Rows 
+        style={styles.cellStyle}
+        data={[
           ['1', 'Matemática', '10', 'Muito bom', 'Nada a declarar'],
           ['2', 'Português', '10', 'Muito bom', 'Nada a declarar'],
         ]} 
@@ -66,10 +67,12 @@ const RestrictedArea = () => {
       </Table>
       </TableWrapper>
       <View style={styles.lilMargin}>
-        <Button
-          title="Deletar"
+        <TouchableOpacity
+          style={styles.button}
           onPress={handleDelete}
-        />
+        >
+          <Text style={{ fontWeight: 'bold' }}>Apagar tudo</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

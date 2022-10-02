@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
       backgroundColor: '#f1f8ff',
       alignContent: 'center',
     },
+    cellStyle: {
+      margin: 10,
+      textAlign: 'center',
+      height: 40,
+    },
 
     rowText: {
       textAlign: 'center',
