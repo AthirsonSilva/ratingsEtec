@@ -98,7 +98,14 @@ const styles = StyleSheet.create({
     rowText: {
       textAlign: 'center',
       margin: 10,
-    }
+    },
+
+    row: {
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+    },
 });
 
 export default styles
