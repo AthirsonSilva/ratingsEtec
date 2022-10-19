@@ -1,10 +1,13 @@
 import React from 'react';
 import {
+	Alert, 
+	Modal,
 	FlatList,
 	Text,
 	View,
 	ActivityIndicator,
 	TouchableOpacity,
+	Pressable,
 } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
@@ -15,6 +18,8 @@ export default function RestrictedPage({ navigation }: any) {
 	const [filtered, setFiltered] = React.useState<any[]>([]);
 	const [search, setSearch] = React.useState<string>('');
 	const [loading, setLoading] = React.useState<boolean>(true);
+	const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+
 
 	const searchFilterFunction = (text: string) => {
 		// Check if searched text is not blank
@@ -72,6 +77,8 @@ export default function RestrictedPage({ navigation }: any) {
 							item.id === 'ID' ? '#f9c2ff' : '#f6f6f6',
 					},
 				]}
+
+				onTouchEnd={() => setModalVisible(!modalVisible)}
 			>
 				<View
 					style={[
@@ -142,6 +149,42 @@ export default function RestrictedPage({ navigation }: any) {
 						{item.rating}
 					</Text>
 				</View>
+
+				<Modal
+					animationType="slide"
+					transparent={true}
+					visible={modalVisible}
+					onRequestClose={() => {
+					Alert.alert("Modal has been closed.");
+					setModalVisible(!modalVisible);
+					}}
+				>
+					<View style={styles.centeredView}>
+					<View style={styles.modalView}>
+						<Text style={styles.listTitle}>Informações sobre a avaliação</Text>
+						<br />
+						<br />
+
+						<View style={{
+							alignItems: 'flex-start'
+						}}>
+							<Text style={styles.modalText}><strong>ID: </strong>{item.id}</Text>
+							<Text style={styles.modalText}><strong>Disciplina: </strong>{item.subject}</Text>
+							<Text style={styles.modalText}><strong>Avaliação: </strong>{item.rating}</Text>
+							<Text style={styles.modalText}><strong>Professor: </strong>{item.teacher}</Text>
+							<Text style={styles.modalText}><strong>Aluno: </strong>{item.student}</Text>
+							<Text style={styles.modalText}><strong>Message positivo: </strong>{item.positiveMessage}</Text>
+							<Text style={styles.modalText}><strong>Message negativo: </strong>{item.negativeMessage}</Text>
+						</View>
+						<Pressable
+						style={[styles.button, styles.buttonClose]}
+						onPress={() => setModalVisible(!modalVisible)}
+						>
+						<Text style={styles.textStyle}>Fechar</Text>
+						</Pressable>
+					</View>
+					</View>
+				</Modal>
 			</View>
 		);
 	};
