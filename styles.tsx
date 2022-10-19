@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
     button: {
       alignItems: "center",
       backgroundColor: "#ddd",
-      padding: 10,
+      padding: 8,
       marginVertical: 10,
-      marginHorizontal: 15,
+      marginHorizontal: 10,
       borderRadius: 10
     },
     item: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       // justifyContent: 'center',
       height: 100,
-      width: 350,
+      width: 325,
       color: '#000',
     },
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     row: {
       flexWrap: 'wrap',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
       alignItems: 'flex-start',
     },
 });

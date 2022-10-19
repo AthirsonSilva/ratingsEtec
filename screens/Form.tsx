@@ -129,7 +129,7 @@ export default function Form({ navigation }: any) {
 			>
 				<Picker
 					mode={'dropdown'}
-					style={[styles.picker, { borderRadius: 10 }]}
+					style={[styles.picker, { borderRadius: 10, marginRight: '5vw' }]}
 					ref={pickerRef}
 					selectedValue={rating}
 					onValueChange={(value, index) => {

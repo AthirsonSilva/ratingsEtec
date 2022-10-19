@@ -176,7 +176,7 @@ export default function RestrictedPage({ navigation }: any) {
 										'Content-Type': 'application/json'
 									}
 								})
-									.then((response: Response): Promise<JSON> => response.json())
+									.then((response: Response): Promise<any> => response.json())
 									.then((json: JSON): void => {
 										console.info('Deu certo, boy. Apagou tudo')
 									})
@@ -185,6 +185,12 @@ export default function RestrictedPage({ navigation }: any) {
 							}}
 						>
 							<Text style={[styles.listTitle]}> Delete all </Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							style={[styles.button]}
+							onPress={async () => getRatings()}
+						>
+							<Text style={[styles.listTitle]}> Refresh </Text>
 						</TouchableOpacity>
 					</View>
 
