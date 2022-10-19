@@ -9,6 +9,12 @@ export class Rating {
   subject: string;
 
   @Column()
+  teacher: string;
+
+  @Column()
+  student: string;
+
+  @Column()
   rating: number;
 
   @Column()

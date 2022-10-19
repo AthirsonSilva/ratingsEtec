@@ -10,7 +10,7 @@ import { RatingsModule } from './ratings/ratings.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '' || '@Potter4',
+      password: '',
       database: 'dbratings',
       entities: [Rating],
       synchronize: true,

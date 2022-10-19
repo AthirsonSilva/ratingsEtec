@@ -8,6 +8,14 @@ export class CreateRatingDto {
   @IsNotEmpty()
   readonly subject: string;
 
+  @IsString()
+  @IsNotEmpty()
+  readonly teacher: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly student: string;
+
   @IsNumber()
   @IsNotEmpty()
   readonly rating: number;
