@@ -19,6 +19,7 @@ export default function RestrictedPage({ navigation }: any) {
 	const [search, setSearch] = React.useState<string>('');
 	const [loading, setLoading] = React.useState<boolean>(true);
 	const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+	const [isEdit, setEdit] = React.useState<boolean>(false);
 
 
 	const searchFilterFunction = (text: string) => {
@@ -122,10 +123,10 @@ export default function RestrictedPage({ navigation }: any) {
 						style={[
 							styles.listTitle,
 							{
-								fontSize: item.subject === 'SUBJECT' ? 28 : 24,
+								fontSize: item.subject === 'Subject' ? 28 : 24,
 								fontWeight:
-									item.subject === 'SUBJECT' ? 'bold' : 'normal',
-								color: item.subject === 'SUBJECT' ? '#000' : '#000',
+									item.subject === 'Subject' ? 'bold' : 'normal',
+								color: item.subject === 'Subject' ? '#000' : '#000',
 							},
 						]}
 					>
@@ -145,10 +146,10 @@ export default function RestrictedPage({ navigation }: any) {
 						style={[
 							styles.listTitle,
 							{
-								fontSize: item.rating === 'RATING' ? 28 : 24,
+								fontSize: item.rating === 'Rating' ? 28 : 24,
 								fontWeight:
-									item.rating === 'RATING' ? 'bold' : 'normal',
-								color: item.rating === 'RATING' ? '#000' : '#000',
+									item.rating === 'Rating' ? 'bold' : 'normal',
+								color: item.rating === 'Rating' ? '#000' : '#000',
 							},
 						]}
 					>
@@ -182,25 +183,41 @@ export default function RestrictedPage({ navigation }: any) {
 							<Text style={styles.modalText}><strong>Message positivo: </strong>{item.positiveMessage}</Text>
 							<Text style={styles.modalText}><strong>Message negativo: </strong>{item.negativeMessage}</Text>
 						</View>
-						<TouchableOpacity
-							style={[styles.button]}
-							onPress={() => setModalVisible(!modalVisible)}
-						>
-							<Text style={[styles.listTitle]}> Home </Text>
-						</TouchableOpacity>
-						<Text style={styles.textStyle}>Fechar</Text>
-						<Pressable
-						style={[styles.button, styles.buttonClose]}
-						onPress={() => setModalVisible(!modalVisible)}
-						>
-						<Text style={styles.textStyle}>Editar</Text>
-						</Pressable>
-						<Pressable
-						style={[styles.button, styles.buttonClose]}
-						onPress={() => setModalVisible(!modalVisible)}
-						>
-						<Text style={styles.textStyle}>Deletar</Text>
-						</Pressable>
+						<View style={[styles.row, { marginBottom: 15 }]}>
+							<TouchableOpacity
+								style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
+								onPress={() => setModalVisible(!modalVisible)}
+							>
+								<Text style={[styles.modalText]}> Fechar </Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
+								onPress={() => {
+									setModalVisible(!modalVisible)
+
+									
+								}}
+							>
+								<Text style={[styles.modalText]}> Editar </Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
+								onPress={async () => {
+									await fetch(`http://localhost:3000/ratings/${item.id}`, {
+										method: 'DELETE',
+										headers: {
+											Accept: 'application/json',
+											'Content-Type': 'application/json'
+										}
+									})
+										.then((response: Response): Promise<JSON> => response.json())
+										.then((json: JSON): void => window.alert('Avaliação deletada com successo!'))
+										.catch((error: Error): void => console.error(error))
+								}}
+							>
+								<Text style={[styles.modalText]}> Deletar </Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 					</View>
 				</Modal>
