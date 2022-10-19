@@ -39,4 +39,9 @@ export class RatingsController {
   remove(@Param('id') id: number) {
     return this.ratingsService.remove(id);
   }
+
+  @Delete()
+  removeAll() {
+    return this.ratingsService.removeAll();
+  }
 }

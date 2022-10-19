@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UpdateRatingDto } from './dto/update-rating.dto';
@@ -29,5 +29,13 @@ export class RatingsService {
 
   remove(id: number) {
     this.ratingsRepository.delete(id);
+  }
+
+  async removeAll() {
+    const ratings = this.findAll();
+
+    (await ratings).forEach((item: any) => {
+      this.ratingsRepository.delete(item.id)
+    })
   }
 }

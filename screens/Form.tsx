@@ -100,7 +100,7 @@ export default function Form({ navigation }: any) {
 					ref={pickerRef}
 					selectedValue={rating}
 					onValueChange={(value, index) => {
-						;(() => setRating(value))()
+						setRating(value)
 
 						console.log(rating)
 					}}
