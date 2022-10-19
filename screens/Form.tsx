@@ -133,11 +133,11 @@ export default function Form({ navigation }: any) {
 					mode={'dropdown'}
 					style={[styles.picker, { borderRadius: 10, marginRight: '5vw' }]}
 					ref={pickerRef}
-					selectedValue={rating}
-					onValueChange={(value, index) => {
+					selectedValue={teacher}
+					onValueChange={(value: string, index: number) => {
 						setTeacher(value)
 
-						console.log(rating)
+						console.log(teacher)
 					}}
 				>
 					<Picker.Item label='Selecione...' value='' />
