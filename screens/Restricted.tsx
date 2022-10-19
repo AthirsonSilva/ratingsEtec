@@ -1,24 +1,22 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
-	LogBox,
 	FlatList,
+	LogBox,
 	SafeAreaView,
 	Text,
 	TouchableOpacity,
 	View,
-} from 'react-native';
-import styles from '../styles';
-
-import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
+} from 'react-native'
+import styles from '../styles'
 
 LogBox.ignoreLogs([
 	'Failed prop type: Invalid prop `textStyle` of type `array` supplied to `Cell`, expected `object`.',
-]);
+])
 
 const RestrictedArea = () => {
-	const [data, setData] = React.useState<never[]>([]);
-	const [loading, setLoading] = React.useState(true);
-	const [error, setError] = React.useState(false);
+	const [data, setData] = React.useState<any[]>([])
+	const [loading, setLoading] = React.useState(true)
+	const [error, setError] = React.useState(false)
 
 	const handleDelete = async () => {
 		await fetch('http://localhost:3000/ratings', {
@@ -30,44 +28,45 @@ const RestrictedArea = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => console.table(data))
-			.catch((error) => console.error(error));
-	};
+			.catch((error) => console.error(error))
+	}
 
-	const handleGet = () => {
-		fetch('http://localhost:3000/ratings', {
+	const handleGet = async (): Promise<void> => {
+		await fetch('http://localhost:3000/ratings', {
 			method: 'GET',
 			headers: {
+				mode: 'no-cors',
 				'Content-Type': 'application/json',
 				accept: 'application/json',
 			},
 		})
 			.then((response: any) => response.json())
 			.then((response: any) => {
-				response.ratings.forEach((item: any) => {
-					console.table(item);
+				response.forEach((item: any) => {
+					console.table(item)
 
-					data.push(item);
-				});
+					data.push(item)
+				})
 
-				console.table('TABLE: ', data);
+				console.table(data)
 			})
-			.catch((error) => console.error(error));
-	};
+			.catch((error) => console.error(error))
+	}
 
 	React.useEffect(() => {
-		handleGet();
+		handleGet()
 		const headers: any = {
 			id: 'ID',
 			subject: 'Subject',
 			rating: 'Rating',
 			positive: 'Positive',
 			negative: 'Negative',
-		};
+		}
 
-		setData(headers);
+		setData(headers)
 
-		setLoading(false);
-	}, []);
+		setLoading(false)
+	}, [])
 
 	const renderItem = ({ item }: { item: any }): JSX.Element => {
 		return (
@@ -133,8 +132,8 @@ const RestrictedArea = () => {
 					</Text>
 				</View>
 			</View>
-		);
-	};
+		)
+	}
 
 	return (
 		<SafeAreaView style={styles.body}>
@@ -150,7 +149,7 @@ const RestrictedArea = () => {
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
-	);
-};
+	)
+}
 
-export default RestrictedArea;
+export default RestrictedArea
