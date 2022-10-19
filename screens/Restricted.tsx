@@ -166,6 +166,26 @@ export default function RestrictedPage({ navigation }: any) {
 						>
 							<Text style={[styles.listTitle]}> Home </Text>
 						</TouchableOpacity>
+						<TouchableOpacity
+							style={[styles.button]}
+							onPress={async () => {
+								await fetch('http://localhost:3000/ratings', {
+									method: 'DELETE',
+									headers: {
+										Accept: 'application/json',
+										'Content-Type': 'application/json'
+									}
+								})
+									.then((response: Response): Promise<JSON> => response.json())
+									.then((json: JSON): void => {
+										console.info('Deu certo, boy. Apagou tudo')
+									})
+									.catch((error: Error): void => console.error(error))
+									.finally((): void => setLoading(false))
+							}}
+						>
+							<Text style={[styles.listTitle]}> Delete all </Text>
+						</TouchableOpacity>
 					</View>
 
 					<FlatList
