@@ -79,6 +79,7 @@ export default function Form({ navigation }: any) {
 						console.log(subject)
 					}}
 				>
+					<Picker.Item label='Selecione...' value='' />
 					<Picker.Item label='PW3' value='PW3' />
 					<Picker.Item label='PAM2' value='PAM2' />
 					<Picker.Item label='SE' value='SE' />
@@ -110,6 +111,7 @@ export default function Form({ navigation }: any) {
 						console.log(rating)
 					}}
 				>
+					<Picker.Item label='Selecione...' value='' />
 					<Picker.Item label='I' value='I' />
 					<Picker.Item label='R' value='R' />
 					<Picker.Item label='B' value='B' />
@@ -138,6 +140,7 @@ export default function Form({ navigation }: any) {
 						console.log(rating)
 					}}
 				>
+					<Picker.Item label='Selecione...' value='' />
 					<Picker.Item label='Allan' value='Allan' />
 					<Picker.Item label='Vanessa' value='Vanessa' />
 					<Picker.Item label='Rosangela' value='Rosangela' />
@@ -155,11 +158,11 @@ export default function Form({ navigation }: any) {
 			<View style={styles.lilMargin}>
 				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
 					{' '}
-					Positive review:{' '}
+					Nome do aluno: {' '}
 				</Text>
 				<TextInput
 					style={styles.textInputs}
-					placeholder='Enter your first and last name. Example: João da Silva'
+					placeholder='Digite seu nome e sobrenome.'
 					placeholderTextColor='#000'
 					autoFocus={true}
 					onChangeText={(input: React.SetStateAction<string>) =>
@@ -171,11 +174,11 @@ export default function Form({ navigation }: any) {
 			<View style={styles.lilMargin}>
 				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
 					{' '}
-					Positive review:{' '}
+					Review positivo (Opcional):{' '}
 				</Text>
 				<TextInput
 					style={styles.textInputs}
-					placeholder='Enter your positive review. Example: foo'
+					placeholder='Digite um ponto positivo da matéria.'
 					placeholderTextColor='#000'
 					autoFocus={true}
 					onChangeText={(input: React.SetStateAction<string>) =>
@@ -187,11 +190,11 @@ export default function Form({ navigation }: any) {
 			<View style={styles.lilMargin}>
 				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
 					{' '}
-					Negative review:{' '}
+					Review negativa (Opcional):{' '}
 				</Text>
 				<TextInput
 					style={styles.textInputs}
-					placeholder='Enter your negative review. Example: bar'
+					placeholder='Digite um ponto negativo da matéria.'
 					placeholderTextColor='#000'
 					onChangeText={(input: React.SetStateAction<string>) =>
 						setNegative(input)

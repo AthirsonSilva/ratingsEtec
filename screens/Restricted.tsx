@@ -109,14 +109,37 @@ export default function RestrictedPage({ navigation }: any) {
 						style={[
 							styles.listTitle,
 							{
-								fontSize: item.data === 'DATA' ? 28 : 24,
+								fontSize: item.subject === 'SUBJECT' ? 28 : 24,
 								fontWeight:
-									item.data === 'DATA' ? 'bold' : 'normal',
-								color: item.data === 'DATA' ? '#000' : '#000',
+									item.subject === 'SUBJECT' ? 'bold' : 'normal',
+								color: item.subject === 'SUBJECT' ? '#000' : '#000',
 							},
 						]}
 					>
-						{item.data}
+						{item.subject}
+					</Text>
+				</View>
+				<View
+					style={[
+						styles.item,
+						{
+							backgroundColor:
+								item.id === 'ID' ? '#f9c2ff' : '#f6f6f6',
+						},
+					]}
+				>
+					<Text
+						style={[
+							styles.listTitle,
+							{
+								fontSize: item.rating === 'RATING' ? 28 : 24,
+								fontWeight:
+									item.rating === 'RATING' ? 'bold' : 'normal',
+								color: item.rating === 'RATING' ? '#000' : '#000',
+							},
+						]}
+					>
+						{item.rating}
 					</Text>
 				</View>
 			</View>
