@@ -13,6 +13,8 @@ import { Picker } from '@react-native-picker/picker'
 export default function Form({ navigation }: any) {
 	const [subject, setSubject] = React.useState<string>('')
 	const [rating, setRating] = React.useState<string>('')
+	const [teacher, setTeacher]  = React.useState<string>('')
+	const [student, setStudent] = React.useState<string>('')
 	const [positive, setPositive] = React.useState<string>('')
 	const [negative, setNegative] = React.useState<string>('')
 
@@ -34,8 +36,10 @@ export default function Form({ navigation }: any) {
 				accept: 'application/json',
 			},
 			body: JSON.stringify({
-				subject: subject.value,
-				rating: rating.value,
+				subject: subject,
+				rating: rating,
+				teacher: teacher,
+				student: student,
 				negativeMessage: negative,
 				positiveMessage: positive,
 			}),
@@ -43,7 +47,7 @@ export default function Form({ navigation }: any) {
 			.then(() => {
 				console.table([subject, rating, negative, positive])
 			})
-			.catch((error) => {
+			.catch((error: Error) => {
 				console.log(error)
 			})
 	}
@@ -68,8 +72,9 @@ export default function Form({ navigation }: any) {
 					style={[styles.picker, { borderRadius: 10 }]}
 					ref={pickerRef}
 					selectedValue={subject}
-					onValueChange={(value, index) => {
-						;(() => setSubject(value))()
+					onValueChange={(value: string, index: number) => {
+						setSubject(value)
+					
 
 						console.log(subject)
 					}}
@@ -99,7 +104,7 @@ export default function Form({ navigation }: any) {
 					style={[styles.picker, { borderRadius: 10 }]}
 					ref={pickerRef}
 					selectedValue={rating}
-					onValueChange={(value, index) => {
+					onValueChange={(value: string, index: number) => {
 						setRating(value)
 
 						console.log(rating)
@@ -110,6 +115,57 @@ export default function Form({ navigation }: any) {
 					<Picker.Item label='B' value='B' />
 					<Picker.Item label='MB' value='MB' />
 				</Picker>
+			</View>
+			<br />
+			<Text style={styles.listTitle}>Professor</Text>
+			<View
+				style={[
+					styles.lilMargin,
+					{
+						marginHorizontal: '10vw',
+						height: '5vh',
+					},
+				]}
+			>
+				<Picker
+					mode={'dropdown'}
+					style={[styles.picker, { borderRadius: 10 }]}
+					ref={pickerRef}
+					selectedValue={rating}
+					onValueChange={(value, index) => {
+						setTeacher(value)
+
+						console.log(rating)
+					}}
+				>
+					<Picker.Item label='Allan' value='Allan' />
+					<Picker.Item label='Vanessa' value='Vanessa' />
+					<Picker.Item label='Rosangela' value='Rosangela' />
+					<Picker.Item label='Aline' value='Aline' />
+					<Picker.Item label='Junior' value='Junior' />
+					<Picker.Item label='Carlos' value='Carlos' />
+					<Picker.Item label='Clodoaldo' value='Clodoaldo' />
+					<Picker.Item label='André' value='André' />
+					<Picker.Item label='Maria do Carmo' value='Maria do Carmo' />
+					<Picker.Item label='Ana Santiago' value='Ana Santiago' />
+					<Picker.Item label='David' value='David' />
+				</Picker>
+			</View>
+
+			<View style={styles.lilMargin}>
+				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
+					{' '}
+					Positive review:{' '}
+				</Text>
+				<TextInput
+					style={styles.textInputs}
+					placeholder='Enter your first and last name. Example: João da Silva'
+					placeholderTextColor='#000'
+					autoFocus={true}
+					onChangeText={(input: React.SetStateAction<string>) =>
+						setStudent(input)
+					}
+				/>
 			</View>
 
 			<View style={styles.lilMargin}>
