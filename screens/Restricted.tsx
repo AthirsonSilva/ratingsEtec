@@ -56,8 +56,14 @@ export default function RestrictedPage({ navigation }: any) {
 		})
 			.then((response) => response.json())
 			.then((json) => {				
-				json.forEach((rating: any) => {
-					data.push(rating);
+				data.splice(0, data.length)
+				
+				json.forEach((rating: any, index: number) => {
+					if (data.includes(rating, index)) {
+						console.log('')
+					} else {
+						data.push(rating);
+					}
 				});
 
 				console.table(data);
@@ -176,11 +182,24 @@ export default function RestrictedPage({ navigation }: any) {
 							<Text style={styles.modalText}><strong>Message positivo: </strong>{item.positiveMessage}</Text>
 							<Text style={styles.modalText}><strong>Message negativo: </strong>{item.negativeMessage}</Text>
 						</View>
+						<TouchableOpacity
+							style={[styles.button]}
+							onPress={() => setModalVisible(!modalVisible)}
+						>
+							<Text style={[styles.listTitle]}> Home </Text>
+						</TouchableOpacity>
+						<Text style={styles.textStyle}>Fechar</Text>
 						<Pressable
 						style={[styles.button, styles.buttonClose]}
 						onPress={() => setModalVisible(!modalVisible)}
 						>
-						<Text style={styles.textStyle}>Fechar</Text>
+						<Text style={styles.textStyle}>Editar</Text>
+						</Pressable>
+						<Pressable
+						style={[styles.button, styles.buttonClose]}
+						onPress={() => setModalVisible(!modalVisible)}
+						>
+						<Text style={styles.textStyle}>Deletar</Text>
 						</Pressable>
 					</View>
 					</View>
