@@ -216,12 +216,18 @@ export default function Form({ navigation }: any) {
 				</TouchableOpacity>
 			</View>
 
-			<View style={styles.lilMargin}>
+			<View style={[styles.row, { marginBottom: 15 }]}>
 				<TouchableOpacity
-					style={styles.button}
+					style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
 					onPress={() => navigation.navigate('Restricted')}
 				>
-					<Text>Área restrita</Text>
+					<Text> Admin </Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
+					onPress={() => navigation.navigate('Mapa')}
+				>
+					<Text> Mapa </Text>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
