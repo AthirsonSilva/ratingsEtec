@@ -1,9 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateRatingDto {
-  @IsNotEmpty()
-  id: number;
-
   @IsString()
   @IsNotEmpty()
   readonly subject: string;
@@ -11,6 +8,14 @@ export class CreateRatingDto {
   @IsNumber()
   @IsNotEmpty()
   readonly rating: number;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly teacher: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly student: string;
 
   @IsString()
   @IsNotEmpty()

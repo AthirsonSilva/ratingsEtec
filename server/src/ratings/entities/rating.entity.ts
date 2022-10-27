@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Rating {
+export class Rating extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,6 +10,12 @@ export class Rating {
 
   @Column()
   rating: number;
+
+  @Column()
+  teacher: string;
+
+  @Column()
+  student: string;
 
   @Column()
   positiveMessage: string;
