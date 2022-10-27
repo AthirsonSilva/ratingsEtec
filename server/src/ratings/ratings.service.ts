@@ -19,9 +19,9 @@ export class RatingsService {
     return this.ratingsRepository.find();
   }
 
-  /*   findOne(id: number) {
-    return this.ratingsRepository.findOne(id);
-  } */
+  findOne(id: number) {
+    return this.ratingsRepository.findByIds([id]);
+  }
 
   update(id: number, updateRatingDto: UpdateRatingDto) {
     this.ratingsRepository.update(id, updateRatingDto);
