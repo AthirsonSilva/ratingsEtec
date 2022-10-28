@@ -224,8 +224,7 @@ export default function RestrictedPage({ navigation }: any) {
 									}
 								>
 									<Text style={[styles.modalText]}>
-										{' '}
-										Fechar{' '}
+										Fechar
 									</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
@@ -238,8 +237,7 @@ export default function RestrictedPage({ navigation }: any) {
 									}}
 								>
 									<Text style={[styles.modalText]}>
-										{' '}
-										Editar{' '}
+										Editar
 									</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
@@ -276,8 +274,7 @@ export default function RestrictedPage({ navigation }: any) {
 									}}
 								>
 									<Text style={[styles.modalText]}>
-										{' '}
-										Deletar{' '}
+										Deletar
 									</Text>
 								</TouchableOpacity>
 							</View>

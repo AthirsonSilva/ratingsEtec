@@ -1,6 +1,7 @@
 import React from 'react'
 import {
 	SafeAreaView,
+	ScrollView,
 	Text,
 	TextInput,
 	TouchableOpacity,
@@ -54,182 +55,185 @@ export default function Form({ navigation }: any) {
 
 	return (
 		<SafeAreaView style={styles.body}>
-			<br />
-			<br />
-
-			<Text style={styles.listTitle}>Disciplina</Text>
-			<View
-				style={[
-					styles.lilMargin,
-					{
-						marginHorizontal: '10vw',
-						height: '5vh',
-					},
-				]}
-			>
-				<Picker
-					mode={'dropdown'}
-					style={[styles.picker, { borderRadius: 10 }]}
-					ref={pickerRef}
-					selectedValue={subject}
-					onValueChange={(value: string, index: number) => {
-						setSubject(value)
-
-						console.log(subject)
-					}}
-				>
-					<Picker.Item label='Selecione...' value='' />
-					<Picker.Item label='PW3' value='PW3' />
-					<Picker.Item label='PAM2' value='PAM2' />
-					<Picker.Item label='SE' value='SE' />
-					<Picker.Item label='SSI' value='SSI' />
-					<Picker.Item label='DTCC' value='DTCC' />
-					<Picker.Item label='QTS' value='QTS' />
-					<Picker.Item label='BD2' value='BD2' />
-				</Picker>
-			</View>
-			<br />
-			<Text style={styles.listTitle}>Avaliação</Text>
-			<View
-				style={[
-					styles.lilMargin,
-					{
-						marginHorizontal: '10vw',
-						height: '5vh',
-					},
-				]}
-			>
-				<Picker
-					mode={'dropdown'}
-					style={[styles.picker, { borderRadius: 10 }]}
-					ref={pickerRef}
-					selectedValue={rating}
-					onValueChange={(value: string, index: number) => {
-						setRating(value)
-
-						console.log(rating)
-					}}
-				>
-					<Picker.Item label='Selecione...' value='' />
-					<Picker.Item label='I' value='I' />
-					<Picker.Item label='R' value='R' />
-					<Picker.Item label='B' value='B' />
-					<Picker.Item label='MB' value='MB' />
-				</Picker>
-			</View>
-			<br />
-			<Text style={styles.listTitle}>Professor</Text>
-			<View
-				style={[
-					styles.lilMargin,
-					{
-						marginHorizontal: '10vw',
-						height: '5vh',
-					},
-				]}
-			>
-				<Picker
-					mode={'dropdown'}
+			<ScrollView>
+				<Text style={styles.listTitle}>Disciplina</Text>
+				<View
 					style={[
-						styles.picker,
-						{ borderRadius: 10, marginRight: '5vw' },
+						styles.lilMargin,
+						{
+							marginHorizontal: '10%',
+							height: '5%',
+						},
 					]}
-					ref={pickerRef}
-					selectedValue={teacher}
-					onValueChange={(value: string, index: number) => {
-						setTeacher(value)
-
-						console.log(teacher)
-					}}
 				>
-					<Picker.Item label='Selecione...' value='' />
-					<Picker.Item label='Allan' value='Allan' />
-					<Picker.Item label='Vanessa' value='Vanessa' />
-					<Picker.Item label='Rosangela' value='Rosangela' />
-					<Picker.Item label='Aline' value='Aline' />
-					<Picker.Item label='Junior' value='Junior' />
-					<Picker.Item label='Carlos' value='Carlos' />
-					<Picker.Item label='Clodoaldo' value='Clodoaldo' />
-					<Picker.Item label='André' value='André' />
-					<Picker.Item
-						label='Maria do Carmo'
-						value='Maria do Carmo'
+					<Picker
+						mode={'dropdown'}
+						style={[styles.picker, { borderRadius: 10 }]}
+						ref={pickerRef}
+						selectedValue={subject}
+						onValueChange={(value: string, index: number) => {
+							setSubject(value)
+
+							console.log(subject)
+						}}
+					>
+						<Picker.Item label='Selecione...' value='' />
+						<Picker.Item label='PW3' value='PW3' />
+						<Picker.Item label='PAM2' value='PAM2' />
+						<Picker.Item label='SE' value='SE' />
+						<Picker.Item label='SSI' value='SSI' />
+						<Picker.Item label='DTCC' value='DTCC' />
+						<Picker.Item label='QTS' value='QTS' />
+						<Picker.Item label='BD2' value='BD2' />
+					</Picker>
+				</View>
+				<Text style={styles.listTitle}>Avaliação</Text>
+				<View
+					style={[
+						styles.lilMargin,
+						{
+							marginHorizontal: '10%',
+							height: '5%',
+						},
+					]}
+				>
+					<Picker
+						mode={'dropdown'}
+						style={[styles.picker, { borderRadius: 10 }]}
+						ref={pickerRef}
+						selectedValue={rating}
+						onValueChange={(value: string, index: number) => {
+							setRating(value)
+
+							console.log(rating)
+						}}
+					>
+						<Picker.Item label='Selecione...' value='' />
+						<Picker.Item label='I' value='I' />
+						<Picker.Item label='R' value='R' />
+						<Picker.Item label='B' value='B' />
+						<Picker.Item label='MB' value='MB' />
+					</Picker>
+				</View>
+				<Text style={styles.listTitle}>Professor</Text>
+				<View
+					style={[
+						styles.lilMargin,
+						{
+							marginHorizontal: '10%',
+							height: '5%',
+						},
+					]}
+				>
+					<Picker
+						mode={'dropdown'}
+						style={[
+							styles.picker,
+							{ borderRadius: 10, marginRight: '5%' },
+						]}
+						ref={pickerRef}
+						selectedValue={teacher}
+						onValueChange={(value: string, index: number) => {
+							setTeacher(value)
+
+							console.log(teacher)
+						}}
+					>
+						<Picker.Item label='Selecione...' value='' />
+						<Picker.Item label='Allan' value='Allan' />
+						<Picker.Item label='Vanessa' value='Vanessa' />
+						<Picker.Item label='Rosangela' value='Rosangela' />
+						<Picker.Item label='Aline' value='Aline' />
+						<Picker.Item label='Junior' value='Junior' />
+						<Picker.Item label='Carlos' value='Carlos' />
+						<Picker.Item label='Clodoaldo' value='Clodoaldo' />
+						<Picker.Item label='André' value='André' />
+						<Picker.Item
+							label='Maria do Carmo'
+							value='Maria do Carmo'
+						/>
+						<Picker.Item
+							label='Ana Santiago'
+							value='Ana Santiago'
+						/>
+						<Picker.Item label='David' value='David' />
+					</Picker>
+				</View>
+
+				<View style={styles.lilMargin}>
+					<Text style={[styles.listTitle, { marginBottom: '2%' }]}>
+						Nome do aluno:
+					</Text>
+					<TextInput
+						style={styles.textInputs}
+						placeholder='Digite seu nome e sobrenome.'
+						placeholderTextColor='#000'
+						autoFocus={true}
+						onChangeText={(input: React.SetStateAction<string>) =>
+							setStudent(input)
+						}
 					/>
-					<Picker.Item label='Ana Santiago' value='Ana Santiago' />
-					<Picker.Item label='David' value='David' />
-				</Picker>
-			</View>
+				</View>
 
-			<View style={styles.lilMargin}>
-				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
-					{' '}
-					Nome do aluno:{' '}
-				</Text>
-				<TextInput
-					style={styles.textInputs}
-					placeholder='Digite seu nome e sobrenome.'
-					placeholderTextColor='#000'
-					autoFocus={true}
-					onChangeText={(input: React.SetStateAction<string>) =>
-						setStudent(input)
-					}
-				/>
-			</View>
+				<View style={styles.lilMargin}>
+					<Text style={[styles.listTitle, { marginBottom: '2%' }]}>
+						Review positivo (Opcional):
+					</Text>
+					<TextInput
+						style={styles.textInputs}
+						placeholder='Digite um ponto positivo da matéria.'
+						placeholderTextColor='#000'
+						autoFocus={true}
+						onChangeText={(input: React.SetStateAction<string>) =>
+							setPositive(input)
+						}
+					/>
+				</View>
 
-			<View style={styles.lilMargin}>
-				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
-					{' '}
-					Review positivo (Opcional):{' '}
-				</Text>
-				<TextInput
-					style={styles.textInputs}
-					placeholder='Digite um ponto positivo da matéria.'
-					placeholderTextColor='#000'
-					autoFocus={true}
-					onChangeText={(input: React.SetStateAction<string>) =>
-						setPositive(input)
-					}
-				/>
-			</View>
+				<View style={styles.lilMargin}>
+					<Text style={[styles.listTitle, { marginBottom: '2%' }]}>
+						Review negativa (Opcional):
+					</Text>
+					<TextInput
+						style={styles.textInputs}
+						placeholder='Digite um ponto negativo da matéria.'
+						placeholderTextColor='#000'
+						onChangeText={(input: React.SetStateAction<string>) =>
+							setNegative(input)
+						}
+					/>
+				</View>
 
-			<View style={styles.lilMargin}>
-				<Text style={[styles.listTitle, { marginBottom: '2vh' }]}>
-					{' '}
-					Review negativa (Opcional):{' '}
-				</Text>
-				<TextInput
-					style={styles.textInputs}
-					placeholder='Digite um ponto negativo da matéria.'
-					placeholderTextColor='#000'
-					onChangeText={(input: React.SetStateAction<string>) =>
-						setNegative(input)
-					}
-				/>
-			</View>
+				<View style={styles.lilMargin}>
+					<TouchableOpacity
+						style={styles.button}
+						onPress={() => handleSubmit()}
+					>
+						<Text>Enviar avaliação</Text>
+					</TouchableOpacity>
+				</View>
 
-			<View style={styles.lilMargin}>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => handleSubmit()}
-				>
-					<Text>Enviar avaliação</Text>
-				</TouchableOpacity>
-			</View>
-
-			<View style={[styles.row, { marginBottom: 15 }]}>
-				<TouchableOpacity
-					style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
-					onPress={() => navigation.navigate('Restricted')}
-				>
-					<Text> Admin </Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={[styles.button, { padding: 4, marginHorizontal: 6 }]}
-					onPress={() => navigation.navigate('Mapa')}
-				>
-					<Text> Mapa </Text>
-				</TouchableOpacity>
-			</View>
+				<View style={[styles.row, { marginBottom: 15 }]}>
+					<TouchableOpacity
+						style={[
+							styles.button,
+							{ padding: 4, marginHorizontal: 6 },
+						]}
+						onPress={() => navigation.navigate('Restricted')}
+					>
+						<Text> Admin </Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={[
+							styles.button,
+							{ padding: 4, marginHorizontal: 6 },
+						]}
+						onPress={() => navigation.navigate('Mapa')}
+					>
+						<Text> Mapa </Text>
+					</TouchableOpacity>
+				</View>
+			</ScrollView>
 		</SafeAreaView>
 	)
 }
