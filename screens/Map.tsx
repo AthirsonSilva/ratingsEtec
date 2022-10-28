@@ -1,6 +1,6 @@
 import { useJsApiLoader } from '@react-google-maps/api'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ActivityIndicator, View } from 'react-native'
 import MapView from 'react-native-maps'
 import styles from '../styles'
 
@@ -53,7 +53,7 @@ export default function MapsScreen() {
 		</View>
 	) : (
 		<View>
-			<Text>Oops</Text>
+			<ActivityIndicator />
 		</View>
 	)
 }
