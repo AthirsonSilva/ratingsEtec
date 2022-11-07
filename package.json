@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
-    "@react-google-maps/api": "^2.13.1",
+    "@react-google-maps/api": "^2.16.0",
     "@react-native-picker/picker": "^2.4.6",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.0",

@@ -5,7 +5,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
-	View,
+	View
 } from 'react-native'
 import styles from '../styles'
 
@@ -34,7 +34,7 @@ export default function Form({ navigation }: any) {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				accept: 'application/json',
+				accept: 'application/json'
 			},
 			body: JSON.stringify({
 				subject: subject,
@@ -42,8 +42,8 @@ export default function Form({ navigation }: any) {
 				teacher: teacher,
 				student: student,
 				negativeMessage: negative,
-				positiveMessage: positive,
-			}),
+				positiveMessage: positive
+			})
 		})
 			.then(() => {
 				console.table([subject, rating, negative, positive])
@@ -55,15 +55,15 @@ export default function Form({ navigation }: any) {
 
 	return (
 		<SafeAreaView style={styles.body}>
-			<ScrollView>
+			<ScrollView scrollEnabled={true}>
 				<Text style={styles.listTitle}>Disciplina</Text>
 				<View
 					style={[
 						styles.lilMargin,
 						{
 							marginHorizontal: '10%',
-							height: '5%',
-						},
+							height: '5%'
+						}
 					]}
 				>
 					<Picker
@@ -93,8 +93,8 @@ export default function Form({ navigation }: any) {
 						styles.lilMargin,
 						{
 							marginHorizontal: '10%',
-							height: '5%',
-						},
+							height: '5%'
+						}
 					]}
 				>
 					<Picker
@@ -121,15 +121,15 @@ export default function Form({ navigation }: any) {
 						styles.lilMargin,
 						{
 							marginHorizontal: '10%',
-							height: '5%',
-						},
+							height: '5%'
+						}
 					]}
 				>
 					<Picker
 						mode={'dropdown'}
 						style={[
 							styles.picker,
-							{ borderRadius: 10, marginRight: '5%' },
+							{ borderRadius: 10, marginRight: '5%' }
 						]}
 						ref={pickerRef}
 						selectedValue={teacher}
@@ -217,7 +217,7 @@ export default function Form({ navigation }: any) {
 					<TouchableOpacity
 						style={[
 							styles.button,
-							{ padding: 4, marginHorizontal: 6 },
+							{ padding: 4, marginHorizontal: 6 }
 						]}
 						onPress={() => navigation.navigate('Restricted')}
 					>
@@ -226,7 +226,7 @@ export default function Form({ navigation }: any) {
 					<TouchableOpacity
 						style={[
 							styles.button,
-							{ padding: 4, marginHorizontal: 6 },
+							{ padding: 4, marginHorizontal: 6 }
 						]}
 						onPress={() => navigation.navigate('Mapa')}
 					>

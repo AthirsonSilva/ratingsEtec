@@ -25,13 +25,13 @@ export default class App extends React.Component {
 							options={{
 								title: 'Avaliação de disciplinas',
 								headerStyle: {
-									backgroundColor: '#fff',
+									backgroundColor: '#fff'
 								},
 								headerTitleStyle: {
 									fontWeight: 'bold',
-									fontSize: 26,
+									fontSize: 26
 								},
-								headerTitleAlign: 'center',
+								headerTitleAlign: 'center'
 							}}
 						/>
 						<Stack.Screen
@@ -40,13 +40,13 @@ export default class App extends React.Component {
 							options={{
 								title: 'Área restrita',
 								headerStyle: {
-									backgroundColor: '#fff',
+									backgroundColor: '#fff'
 								},
 								headerTitleStyle: {
 									fontWeight: 'bold',
-									fontSize: 26,
+									fontSize: 26
 								},
-								headerTitleAlign: 'center',
+								headerTitleAlign: 'center'
 							}}
 						/>
 						<Stack.Screen
@@ -55,13 +55,13 @@ export default class App extends React.Component {
 							options={{
 								title: 'Mapinha legal',
 								headerStyle: {
-									backgroundColor: '#fff',
+									backgroundColor: '#fff'
 								},
 								headerTitleStyle: {
 									fontWeight: 'bold',
-									fontSize: 26,
+									fontSize: 26
 								},
-								headerTitleAlign: 'center',
+								headerTitleAlign: 'center'
 							}}
 						/>
 					</Stack.Navigator>
